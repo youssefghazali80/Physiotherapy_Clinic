@@ -1,0 +1,21 @@
+PID   PType  PT    VT   FT   WT  TT    Cancel   Resc
+P10      R         65    70    150   10   70     F            F
+P9      N         55    60    145   10   75     F            F
+P7      N         45    50    94   4   40     F            F
+P8      R         50    55    88   3   30     F            F
+P5      N         40    40    87   22   25     F            F
+P6      R         40    45    83   3   35     F            F
+P3      R         30    35    76   20   21     F            F
+P4      R         69    40    75   30   5     F            T
+P2      R         25    30    70   5   35     F            F
+P1      N         33    25    61   9   27     F            T
+
+Total number of timesteps = 151
+Total number of all, N, and R patients = 10, 4, 6
+Average total waiting time for all, N, and R patients = 11.6, 11.25, 11.8333
+Average total treatment time for all, N, and R patients = 36.3, 41.75, 32.6667
+Percentage of patients of an accepted cancellation (%) = 0 %
+Percentage of patients of an accepted rescheduling (%) = 20 %
+Percentage of early patients (%) = 20 %
+Percentage of late patients (%) = 70 %
+Average late penalty = 2 timestep(s)
