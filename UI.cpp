@@ -5,7 +5,9 @@
 #include "UltrasoundResource.h"
 #include "ArrayStack.h"
 #include "GymResource.h"
-#include <conio.h>
+//#include <conio.h>    // This is for windows
+#include <unistd.h>
+#include "termio.h"
 // CONSTRUCTOR.
 UI :: UI (ProgramMode programMode) : Mode(programMode){}
 
@@ -89,10 +91,32 @@ void UI:: printFinishedList(ArrayStack <Patient *> *finishedPatients){
     std::cout << finishedPatients->size() << " finished patients: " << *(finishedPatients) << endl;
 
 }
+
 void UI:: waitForAnyKey()
 {
-   std::cout << "Press any key to continue..." << std::endl;
-    _getch(); // Waits for any key press (no Enter needed)
+   // Waits for a single key press without needing Enter
+
+    std::cout << "Press any key to continue..." << std::flush;
+
+    termios oldt, newt;
+    char ch;
+
+    // Get current terminal settings
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+
+    // Disable canonical mode and echo
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+
+    // Wait for a key press
+    read(STDIN_FILENO, &ch, 1);
+
+    // Restore original terminal settings
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+
+    std::cout << std::endl;
+    //_getch()         this line for windows.
 }
 
     
